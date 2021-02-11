@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+	<title>Untitled Test Suite</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Untitled Test Case</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>http://localhost/addressbook/edit.php<datalist><option>http://localhost/addressbook/edit.php</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>xpath=(//input[@name='submit'])[2]<datalist><option>xpath=(//input[@name='submit'])[2]</option><option>//div[@id='content']/form/input[21]</option><option>//input[21]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>link=home<datalist><option>link=home</option><option>//a[contains(text(),'home')]</option><option>//div[@id='nav']/ul/li/a</option><option>//a[contains(@href, './')]</option><option>//li/a</option><option>css=li &gt; a</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=4<datalist><option>id=4</option><option>name=selected[]</option><option>//input[@id='4']</option><option>//table[@id='maintable']/tbody/tr[2]/td/input</option><option>//td/input</option><option>css=#4</option></datalist></td><td></td>
+</tr>
+<tr><td>chooseOkOnNextConfirmation</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>//input[@value='Delete']<datalist><option>//input[@value='Delete']</option><option>//div[@id='content']/form[2]/div[2]/input</option><option>//div[2]/input</option></datalist></td><td></td>
+</tr>
+<tr><td>assertConfirmation</td><td>Delete 1 addresses?<datalist><option>Delete 1 addresses?</option></datalist></td><td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Untitled Test Case</td></tr>
+</thead>
+<tbody>
+</tbody></table>
+</body>
+</html>
