@@ -1,6 +1,7 @@
 package ru.stqa.pft.addressbook;
 
 import java.util.concurrent.TimeUnit;
+
 import org.testng.annotations.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -32,7 +33,7 @@ public class ContactCreationTests {
   @Test
   public void testContactCreationTests() throws Exception {
     gotoContactNewPage();
-    fillContactForm(new ContactData("Elizaveta", "Prockaya", "Pavlovna", "Liza", "tester", "CometСat", "Russia, Nizhny Novgorod", "89200101623", "cat@gmail.com", "5", "May", "2000", "Test"));
+    fillContactForm(new ContactData("Elizaveta", "Prockaya", "Pavlovna", "Liza", "tester", "CometСat", "Russia, Nizhny Novgorod", "89200101623", "cat@gmail.com", "5", "May", "2000", "Test", 1));
     submitContactCreation();
     returnToHomeLogout();
   }
@@ -74,18 +75,17 @@ public class ContactCreationTests {
     wd.findElement(By.name("email")).sendKeys(contactData.getEmail());
     wd.findElement(By.name("bday")).click();
     new Select(wd.findElement(By.name("bday"))).selectByVisibleText(contactData.getDay());
-    wd.findElement(By.xpath("//option[@value='5']")).click();
+    wd.findElement(By.xpath("//option[@value='" + contactData.getDay() + "']")).click();
     wd.findElement(By.name("bmonth")).click();
     new Select(wd.findElement(By.name("bmonth"))).selectByVisibleText(contactData.getMonth());
-    wd.findElement(By.xpath("//option[@value='May']")).click();
+    wd.findElement(By.xpath("//option[@value='" + contactData.getMonth() + "']")).click();
     wd.findElement(By.name("byear")).click();
     wd.findElement(By.name("byear")).clear();
     wd.findElement(By.name("byear")).sendKeys(contactData.getYear());
     wd.findElement(By.name("theform")).click();
-    wd.findElement(By.xpath("//div[@id='content']/form/label[20]")).click();
     wd.findElement(By.name("new_group")).click();
-    new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
-    wd.findElement(By.xpath("(//option[@value='1'])[3]")).click();
+    new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroupName() + "");
+    wd.findElement(By.xpath("(//option[@value='" + contactData.getGroupId() + "'])[3]")).click();
   }
 
   private void submitContactCreation() {

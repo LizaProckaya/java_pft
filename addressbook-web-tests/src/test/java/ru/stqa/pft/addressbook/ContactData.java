@@ -13,9 +13,10 @@ public class ContactData {
   private final String day;
   private final String month;
   private final String year;
-  private final String group;
+  private final String groupName;
+  private final int groupId;
 
-  public ContactData(String firstName, String middleName, String lastName, String nickname, String title, String company, String Address, String telephoneMobile, String email, String day, String month, String year, String group) {
+  public ContactData(String firstName, String middleName, String lastName, String nickname, String title, String company, String Address, String telephoneMobile, String email, String day, String month, String year, String groupName, int groupId) {
     this.firstName = firstName;
     this.middleName = middleName;
     this.lastName = lastName;
@@ -28,7 +29,8 @@ public class ContactData {
     this.day = day;
     this.month = month;
     this.year = year;
-    this.group = group;
+    this.groupName = groupName;
+    this.groupId = groupId;
   }
 
   public String getFirstName() {
@@ -79,7 +81,11 @@ public class ContactData {
     return year;
   }
 
-  public String getGroup() {
-    return group;
+  public String getGroupName() {
+    return groupName;
+  }
+
+  public int getGroupId() {
+    return groupId;
   }
 }
