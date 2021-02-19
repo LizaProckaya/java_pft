@@ -7,10 +7,10 @@ import ru.stqa.pft.addressbook.model.ContactData;
 
 public class ContactHelper extends HelperBase {
   public ContactHelper(WebDriver wd) {
-    super (wd);
+    super(wd);
   }
 
-  public void fillContactForm(ContactData contactData) {
+  public void fillContactForm(ContactData contactData, boolean fillGroup) {
     type(By.name("firstname"), contactData.getFirstName());
     type(By.name("middlename"), contactData.getMiddleName());
     type(By.name("lastname"), contactData.getLastName());
@@ -34,10 +34,11 @@ public class ContactHelper extends HelperBase {
     new Select(wd.findElement(By.name("bmonth"))).selectByVisibleText(contactData.getMonth());
     click(By.xpath("//option[@value='" + contactData.getMonth() + "']"));
     type(By.name("byear"), contactData.getYear());
-    click(By.name("theform"));
-    click(By.name("new_group"));
-    new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroupName() + "");
-    click(By.xpath("(//option[@value='" + contactData.getGroupId() + "'])[3]"));
+    if (fillGroup) {
+      click(By.name("new_group"));
+      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroupName() + "");
+      click(By.xpath("(//option[@value='" + contactData.getGroupId() + "'])[3]"));
+    }
   }
 
   public void submitContactCreation() {
@@ -53,5 +54,13 @@ public class ContactHelper extends HelperBase {
     click(By.id(id));
     click(By.xpath("//input[@value='Delete']"));
     wd.switchTo().alert().accept();
+  }
+
+  public void initContactModification() {
+    click(By.xpath("//img[@alt='Edit']"));
+  }
+
+  public void submitContactModification() {
+    click(By.xpath("(//input[@name='update'])[2]"));
   }
 }
