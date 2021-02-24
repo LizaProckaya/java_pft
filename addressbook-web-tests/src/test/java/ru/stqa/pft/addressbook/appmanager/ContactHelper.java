@@ -50,8 +50,8 @@ public class ContactHelper extends HelperBase {
     click(By.linkText("Logout"));
   }
 
-  public void deleteSelectedContact(String id) {
-    click(By.id(id));
+  public void deleteFirstSelectedContact() {
+    wd.findElements(By.name("selected[]")).get(0).click();
     click(By.xpath("//input[@value='Delete']"));
     wd.switchTo().alert().accept();
   }
