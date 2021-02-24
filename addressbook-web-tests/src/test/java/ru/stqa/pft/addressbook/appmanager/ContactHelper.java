@@ -50,9 +50,8 @@ public class ContactHelper extends HelperBase {
     click(By.xpath("(//input[@name='submit'])[2]"));
   }
 
-  public void returnToHomeLogout() {
+  public void returnToHome() {
     click(By.linkText("home"));
-    click(By.linkText("Logout"));
   }
 
   public void deleteFirstSelectedContact() {

@@ -10,7 +10,8 @@ public class ContactModificationTests extends TestBase {
     app.getContactHelper().initContactModification();
     app.getContactHelper().fillContactForm(new ContactData("Elizaveta1", "Prockaya", "Pavlovna", "Liza", "tester", "CometСat", "Russia, Nizhny Novgorod", "89200101623", "cat@gmail.com", "5", "May", "2000", "Test"), false);
     app.getContactHelper().submitContactModification();
-    app.getContactHelper().returnToHomeLogout();
+    app.getContactHelper().returnToHome();
+    app.getSessionHelper().logout();;
   }
 
 }

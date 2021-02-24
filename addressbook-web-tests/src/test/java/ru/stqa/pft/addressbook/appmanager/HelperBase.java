@@ -10,8 +10,7 @@ public class HelperBase {
   }
 
   protected void click(By locator) {
-    WebElement we = wd.findElement(locator);
-    we.click();
+    wd.findElement(locator).click();
   }
 
   protected void type(By locator, String text) {
