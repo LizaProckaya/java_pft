@@ -30,9 +30,6 @@ public class GroupModificationTests extends TestBase {
     before.add(group);
     // Преобразование списков в множества и сравнение множеств
     Assert.assertEquals(new HashSet<Object>(before),new HashSet<Object>(after));
-
-
-
     app.getSessionHelper().logout();
 
 
