@@ -11,6 +11,7 @@ public class GroupDeletionTests extends TestBase {
   @Test
   public void testGroupDeletion() {
     app.getNavigationHelper().gotoGroupPage();
+    // Проверка на наличии хотя бы 1ой гуппы на странице.
     if (!app.getGroupHelper().isThereAGroup()) {
       app.getGroupHelper().createGroup(new GroupData("test1", null, null));
     }
@@ -21,11 +22,10 @@ public class GroupDeletionTests extends TestBase {
     List<GroupData> after = app.getGroupHelper().getGroupList();
     // Сравнение размера списков групп.
     Assert.assertEquals(after.size(), before.size() - 1);
-    app.getSessionHelper().logout();
-
-// Сравнение списков групп целиком.
+    // Сравнение списков групп целиком.
     before.remove(before.size() - 1);
     Assert.assertEquals(before, after);
+    app.getSessionHelper().logout();
   }
 }
 
