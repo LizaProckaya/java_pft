@@ -18,9 +18,14 @@ public class GroupDeletionTests extends TestBase {
     app.getGroupHelper().selectGroup(before.size() - 1);
     app.getGroupHelper().deleteSelectedGroup();
     app.getGroupHelper().returnToGroupPage();
-    List<GroupData> after= app.getGroupHelper().getGroupList();
+    List<GroupData> after = app.getGroupHelper().getGroupList();
+    // Сравнение размера списков групп.
     Assert.assertEquals(after.size(), before.size() - 1);
     app.getSessionHelper().logout();
-  }
 
+// Сравнение списков групп целиком.
+    before.remove(before.size() - 1);
+    Assert.assertEquals(before, after);
+  }
 }
+
