@@ -19,7 +19,11 @@ public class ContactDeletionTests extends TestBase {
     app.getContactHelper().deleteFirstSelectedContact(before.size() - 1);
     app.getContactHelper().returnToHome();
     List<ContactData> after = app.getContactHelper().getContactList();
+    // Сравнение размера списков групп.
     Assert.assertEquals(after.size(), before.size() - 1);
+    // Сравнение списков групп целиком.
+    before.remove(before.size() - 1);
+    Assert.assertEquals(before, after);
     app.getSessionHelper().logout();
   }
 
