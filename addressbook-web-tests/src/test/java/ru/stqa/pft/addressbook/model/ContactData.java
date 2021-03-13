@@ -3,7 +3,11 @@ package ru.stqa.pft.addressbook.model;
 import java.util.Objects;
 
 public class ContactData {
-  private final String id;
+  public void setId(int id) {
+    this.id = id;
+  }
+
+  private int id;
   private final String firstName;
   private final String middleName;
   private final String lastName;
@@ -19,7 +23,7 @@ public class ContactData {
   private final String groupName;
 
   public ContactData(String firstName, String middleName, String lastName, String nickname, String title, String company, String Address, String telephoneMobile, String email, String day, String month, String year, String groupName) {
-    this.id = null;
+    this.id = 0;
     this.firstName = firstName;
     this.middleName = middleName;
     this.lastName = lastName;
@@ -34,7 +38,7 @@ public class ContactData {
     this.year = year;
     this.groupName = groupName;
   }
-  public ContactData(String id,String firstName, String middleName, String lastName, String nickname, String title, String company, String Address, String telephoneMobile, String email, String day, String month, String year, String groupName) {
+  public ContactData(int id,String firstName, String middleName, String lastName, String nickname, String title, String company, String Address, String telephoneMobile, String email, String day, String month, String year, String groupName) {
     this.id = id;
     this.firstName = firstName;
     this.middleName = middleName;
@@ -52,7 +56,7 @@ public class ContactData {
   }
 
 
-  public String getId() {
+  public int getId() {
     return id;
   }
 
@@ -113,7 +117,7 @@ public class ContactData {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     ContactData that = (ContactData) o;
-    return Objects.equals(id, that.id) && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName);
+    return id == that.id && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName);
   }
 
   @Override
@@ -124,7 +128,7 @@ public class ContactData {
   @Override
   public String toString() {
     return "ContactData{" +
-            "id='" + id + '\'' +
+            "id=" + id +
             ", firstName='" + firstName + '\'' +
             ", lastName='" + lastName + '\'' +
             '}';
