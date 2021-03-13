@@ -23,7 +23,7 @@ public class ContactData {
   private final String groupName;
 
   public ContactData(String firstName, String middleName, String lastName, String nickname, String title, String company, String Address, String telephoneMobile, String email, String day, String month, String year, String groupName) {
-    this.id = 0;
+    this.id = Integer.MAX_VALUE;
     this.firstName = firstName;
     this.middleName = middleName;
     this.lastName = lastName;
@@ -38,7 +38,8 @@ public class ContactData {
     this.year = year;
     this.groupName = groupName;
   }
-  public ContactData(int id,String firstName, String middleName, String lastName, String nickname, String title, String company, String Address, String telephoneMobile, String email, String day, String month, String year, String groupName) {
+
+  public ContactData(int id, String firstName, String middleName, String lastName, String nickname, String title, String company, String Address, String telephoneMobile, String email, String day, String month, String year, String groupName) {
     this.id = id;
     this.firstName = firstName;
     this.middleName = middleName;
@@ -117,12 +118,12 @@ public class ContactData {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     ContactData that = (ContactData) o;
-    return id == that.id && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName);
+    return Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, firstName, lastName);
+    return Objects.hash(firstName, lastName);
   }
 
   @Override

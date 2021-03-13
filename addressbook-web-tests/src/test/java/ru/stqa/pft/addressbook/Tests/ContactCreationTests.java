@@ -19,10 +19,11 @@ public class ContactCreationTests extends TestBase {
     app.getContactHelper().returnToHome();
     List<ContactData> after = app.getContactHelper().getContactList();
     Assert.assertEquals(after.size(), before.size() + 1);
-    
-    contact.setId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
+    Comparator<? super ContactData> byId = (c1,c2)->Integer.compare(c1.getId(), c2.getId());
+    before.sort(byId);
+    after.sort(byId);
     before.add(contact);
-    Assert.assertEquals(new HashSet<>(before), new HashSet<>(after));
+    Assert.assertEquals(before, after);
     app.getSessionHelper().logout();
 
   }
