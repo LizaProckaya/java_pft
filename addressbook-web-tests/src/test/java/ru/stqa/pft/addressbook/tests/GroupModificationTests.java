@@ -11,25 +11,25 @@ import java.util.HashSet;
 import java.util.List;
 
 public class GroupModificationTests extends TestBase {
-  @Test
-  public void testModification() {
-    app.getNavigationHelper().gotoGroupPage();
+  @BeforeMethod
+  public void ensurePreconditions(){  app.getNavigationHelper().gotoGroupPage();
     // Проверка на наличии хотя бы 1ой гуппы на странице.
     if (!app.getGroupHelper().isThereAGroup()) {
       app.getGroupHelper().createGroup(new GroupData("test1", null, null));
     }
+  }
+
+  @Test
+  public void testModification() {
     List<GroupData> before = app.getGroupHelper().getGroupList();
-    app.getGroupHelper().selectGroup(before.size() - 1);
-    app.getGroupHelper().initGroupModification();
-    GroupData group = new GroupData(before.get(before.size() - 1).getId(),"test1", "test2", "test3");
-    app.getGroupHelper().fillGroupForm(group);
-    app.getGroupHelper().submitGroupModification();
-    app.getGroupHelper().returnToGroupPage();
+    int index = before.size()-1;
+    GroupData group = new GroupData(before.get(index).getId(),"test1", "test2", "test3");
+    app.getGroupHelper().modifyGroup(index, group);
     List<GroupData> after= app.getGroupHelper().getGroupList();
     // Сравнение размера списков групп.
     Assert.assertEquals(after.size(), before.size());
     // Удаляем старый список.
-    before.remove(before.size()-1);
+    before.remove(index);
     // Добавляем измененный.
     before.add(group);
     // Преобразование списков в множества и сравнение множеств
