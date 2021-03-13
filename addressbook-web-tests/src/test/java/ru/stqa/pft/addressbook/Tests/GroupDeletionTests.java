@@ -25,7 +25,6 @@ public class GroupDeletionTests extends TestBase {
     // Сравнение списков групп целиком.
     before.remove(before.size() - 1);
     Assert.assertEquals(before, after);
-    app.getSessionHelper().logout();
   }
 }
 

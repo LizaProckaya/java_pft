@@ -3,15 +3,14 @@ package ru.stqa.pft.addressbook.tests;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import ru.stqa.pft.addressbook.model.ContactData;
-
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
 
 public class ContactCreationTests extends TestBase {
 
   @Test
   public void testContactCreation() {
+    app.getNavigationHelper().gotoContactPage();
     List<ContactData> before = app.getContactHelper().getContactList();
     app.getNavigationHelper().gotoContactNewPage();
     ContactData contact = new ContactData("Elizaveta", "Prockaya", "Pavlovna", "Liza", "tester", "CometСat", "Russia, Nizhny Novgorod", "89200101623", "cat@gmail.com", "5", "May", "2000", "test1");
@@ -24,8 +23,5 @@ public class ContactCreationTests extends TestBase {
     after.sort(byId);
     before.add(contact);
     Assert.assertEquals(before, after);
-    app.getSessionHelper().logout();
-
   }
-
 }
