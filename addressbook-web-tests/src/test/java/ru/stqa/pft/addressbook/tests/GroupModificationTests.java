@@ -28,7 +28,9 @@ public class GroupModificationTests extends TestBase {
     List<GroupData> after= app.getGroupHelper().getGroupList();
     // Сравнение размера списков групп.
     Assert.assertEquals(after.size(), before.size());
+    // Удаляем старый список.
     before.remove(before.size()-1);
+    // Добавляем измененный.
     before.add(group);
     // Преобразование списков в множества и сравнение множеств
     Comparator<? super GroupData> byId = (g1, g2) -> Integer.compare(g1.getId(), g2.getId());
