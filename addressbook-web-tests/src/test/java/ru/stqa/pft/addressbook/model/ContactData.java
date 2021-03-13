@@ -3,59 +3,92 @@ package ru.stqa.pft.addressbook.model;
 import java.util.Objects;
 
 public class ContactData {
-  public void setId(int id) {
+
+  private int id = Integer.MAX_VALUE;;
+  private String firstName;
+  private String middleName;
+  private String lastName;
+  private String nickname;
+  private String title;
+  private String company;
+  private String address;
+
+  private String telephoneMobile;
+  private String email;
+  private String day;
+  private String month;
+  private String year;
+  private String groupName;
+
+  public ContactData withId(int id) {
     this.id = id;
+    return this;
   }
 
-  private int id;
-  private final String firstName;
-  private final String middleName;
-  private final String lastName;
-  private final String nickname;
-  private final String title;
-  private final String company;
-  private final String address;
-  private final String telephoneMobile;
-  private final String email;
-  private final String day;
-  private final String month;
-  private final String year;
-  private final String groupName;
-
-  public ContactData(String firstName, String middleName, String lastName, String nickname, String title, String company, String Address, String telephoneMobile, String email, String day, String month, String year, String groupName) {
-    this.id = Integer.MAX_VALUE;
+  public ContactData withFirstName(String firstName) {
     this.firstName = firstName;
-    this.middleName = middleName;
-    this.lastName = lastName;
-    this.nickname = nickname;
-    this.title = title;
-    this.company = company;
-    address = Address;
-    this.telephoneMobile = telephoneMobile;
-    this.email = email;
-    this.day = day;
-    this.month = month;
-    this.year = year;
-    this.groupName = groupName;
+    return this;
   }
 
-  public ContactData(int id, String firstName, String middleName, String lastName, String nickname, String title, String company, String Address, String telephoneMobile, String email, String day, String month, String year, String groupName) {
-    this.id = id;
-    this.firstName = firstName;
+  public ContactData withMiddleName(String middleName) {
     this.middleName = middleName;
-    this.lastName = lastName;
-    this.nickname = nickname;
-    this.title = title;
-    this.company = company;
-    address = Address;
-    this.telephoneMobile = telephoneMobile;
-    this.email = email;
-    this.day = day;
-    this.month = month;
-    this.year = year;
-    this.groupName = groupName;
+    return this;
   }
 
+  public ContactData withLastName(String lastName) {
+    this.lastName = lastName;
+    return this;
+  }
+
+  public ContactData withNickname(String nickname) {
+    this.nickname = nickname;
+    return this;
+  }
+
+  public ContactData withTitle(String title) {
+    this.title = title;
+    return this;
+  }
+
+  public ContactData withCompany(String company) {
+    this.company = company;
+    return this;
+  }
+
+  public ContactData withAddress(String address) {
+    this.address = address;
+    return this;
+  }
+
+  public ContactData withTelephoneMobile(String telephoneMobile) {
+    this.telephoneMobile = telephoneMobile;
+    return this;
+  }
+
+  public ContactData withEmail(String email) {
+    this.email = email;
+    return this;
+  }
+
+  public ContactData withDay(String day) {
+    this.day = day;
+    return this;
+  }
+
+  public ContactData withMonth(String month) {
+    this.month = month;
+    return this;
+  }
+
+  public ContactData withYear(String year) {
+    this.year = year;
+    return this;
+  }
+
+  public ContactData withGroupName(String groupName) {
+    this.groupName = groupName;
+    return this;
+  }
 
   public int getId() {
     return id;

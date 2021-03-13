@@ -81,12 +81,14 @@ public class ContactHelper extends HelperBase {
     submitContactCreation();
     returnToHome();
   }
+
   public void modify(int index, ContactData contact) {
     initContactModification(index);
     fillContactForm(contact, false);
     submitContactModification();
     returnToHome();
   }
+
   public void delete(int index) {
     deleteFirstSelectedContact(index);
     returnToHome();
@@ -107,8 +109,7 @@ public class ContactHelper extends HelperBase {
       int id = Integer.parseInt(element.findElement(By.cssSelector("td:nth-child(1) input")).getAttribute("value"));
       String lastName = element.findElement(By.cssSelector("td:nth-child(2)")).getText();
       String firstName = element.findElement(By.cssSelector("td:nth-child(3)")).getText();
-      ContactData contact = new ContactData(id, "Elizaveta", null, "Pavlovna", null, null, null, null, null, null, null, null, null, null);
-      contacts.add(contact);
+      contacts.add(new ContactData().withId(id).withFirstName("Elizaveta").withLastName("Pavlovna"));
     }
     return contacts;
   }
