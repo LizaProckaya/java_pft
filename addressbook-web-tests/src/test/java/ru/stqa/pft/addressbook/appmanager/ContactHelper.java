@@ -127,9 +127,9 @@ public class ContactHelper extends HelperBase {
       int id = Integer.parseInt(element.findElement(By.cssSelector("td:nth-child(1) input")).getAttribute("value"));
       String lastName = element.findElement(By.cssSelector("td:nth-child(2)")).getText();
       String firstName = element.findElement(By.cssSelector("td:nth-child(3)")).getText();
-      String[] phones = element.findElement(By.cssSelector("td:nth-child(6)")).getText().split("\n");// список телефонов разделили с помощью переноса строки
+      String allPhones = element.findElement(By.cssSelector("td:nth-child(6)")).getText();
       contactCache.add(new ContactData().withId(id).withFirstName(firstName).withLastName(lastName)
-              .withHomePhone(phones[0]).withMobilePhone(phones[1]).withWorkPhone(phones[2]));
+              .withAllPhones(allPhones));
     }
     return new Contacts(contactCache);
   }
