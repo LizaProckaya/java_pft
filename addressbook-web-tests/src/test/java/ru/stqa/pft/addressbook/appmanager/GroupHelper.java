@@ -55,6 +55,7 @@ public class GroupHelper extends HelperBase {
     groupCache = null;
     returnToGroupPage();
   }
+
   public void modify(GroupData group) {
     selectGroupById(group.getId());
     initGroupModification();
@@ -82,10 +83,10 @@ public class GroupHelper extends HelperBase {
   private Groups groupCache = null;
 
   public Groups all() {
-    if(groupCache!= null){
+    if (groupCache != null) {
       return new Groups(groupCache);
     }
-    groupCache= new Groups();
+    groupCache = new Groups();
     List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
     for (WebElement element : elements) {
       String name = element.getText();
