@@ -1,0 +1,23 @@
+<list>
+  <contact>
+    <firstName>Elizaveta 0</firstName>
+    <middleName>Prockaya 0</middleName>
+    <lastName>Pavlovna 0</lastName>
+    <nickname>Liza 0</nickname>
+    <groupName>test</groupName>
+  </contact>
+  <contact>
+    <firstName>Elizaveta 1</firstName>
+    <middleName>Prockaya 1</middleName>
+    <lastName>Pavlovna 1</lastName>
+    <nickname>Liza 1</nickname>
+    <groupName>test</groupName>
+  </contact>
+  <contact>
+    <firstName>Elizaveta 2</firstName>
+    <middleName>Prockaya 2</middleName>
+    <lastName>Pavlovna 2</lastName>
+    <nickname>Liza 2</nickname>
+    <groupName>test</groupName>
+  </contact>
+</list>
