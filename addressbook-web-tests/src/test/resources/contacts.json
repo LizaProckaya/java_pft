@@ -1,0 +1,23 @@
+[
+  {
+    "firstName": "Elizaveta 0",
+    "middleName": "Prockaya 0",
+    "lastName": "Pavlovna 0",
+    "nickname": "Liza 0",
+    "groupName": "test"
+  },
+  {
+    "firstName": "Elizaveta 1",
+    "middleName": "Prockaya 1",
+    "lastName": "Pavlovna 1",
+    "nickname": "Liza 1",
+    "groupName": "test"
+  },
+  {
+    "firstName": "Elizaveta 2",
+    "middleName": "Prockaya 2",
+    "lastName": "Pavlovna 2",
+    "nickname": "Liza 2",
+    "groupName": "test"
+  }
+]
