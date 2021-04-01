@@ -3,41 +3,76 @@ package ru.stqa.pft.addressbook.model;
 import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
+import org.hibernate.annotations.Type;
 
+import javax.persistence.*;
 import java.io.File;
 import java.util.Objects;
+
+@Entity
+@Table(name = "addressbook")
 @XStreamAlias("contact")
 public class ContactData {
   @XStreamOmitField
+  @Id
+  @Column(name = "id")
   private int id = Integer.MAX_VALUE;;
   @Expose
+  @Column(name = "firstName")
   private String firstName;
   @Expose
+  @Column(name = "middleName")
   private String middleName;
   @Expose
+  @Column(name = "lastName")
   private String lastName;
   @Expose
+  @Column(name = "nickname")
   private String nickname;
+  @Column(name = "title")
   private String title;
+  @Column(name = "company")
   private String company;
+  @Column(name = "address")
+  @Type(type = "text")
   private String address;
+  @Column(name = "home")
+  @Type(type = "text")
   private String home;
+  @Column(name = "mobile")
+  @Type(type = "text")
   private String mobile;
+  @Column(name = "work")
+  @Type(type = "text")
   private String work;
+  @Transient
   private String allPhones;
+  @Column(name = "email")
+  @Type(type = "text")
   private String email;
+  @Column(name = "email2")
+  @Type(type = "text")
   private String email2;
+  @Column(name = "email3")
+  @Type(type = "text")
   private String email3;
+  @Transient
   private String allEmails;
+  @Column(name = "bday", columnDefinition = "TINYINT")
   private String day;
+  @Column(name = "bmonth")
   private String month;
+  @Column(name = "byear")
   private String year;
   @Expose
+  @Transient
   private String groupName;
-  private File photo;
+  @Column(name = "photo")
+  @Type(type = "text")
+  private String photo;
 
-  public ContactData withPhoto(File photo) {
-    this.photo = photo;
+  public ContactData withPhoto(File  photo) {
+    this.photo = photo.getPath();
     return  this;
   }
 
@@ -213,7 +248,7 @@ public class ContactData {
     return groupName;
   }
   public File getPhoto() {
-    return photo;
+    return new File(photo);
   }
 
   @Override
