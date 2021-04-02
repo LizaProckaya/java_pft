@@ -29,6 +29,7 @@ public class ContactDeletionTests extends TestBase {
     Contacts after = app.db().contacts();
     // Сравнение списков групп целиком.
     assertThat(after, equalTo(before.without(deletedContact)));
+    verifyContactListInUI();
   }
 }
 
