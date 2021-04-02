@@ -247,6 +247,7 @@ public class ContactData {
   public String getGroupName() {
     return groupName;
   }
+
   public File getPhoto() {
     return new File(photo);
   }
@@ -256,21 +257,48 @@ public class ContactData {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     ContactData that = (ContactData) o;
-    return id == that.id && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName);
+    return id == that.id && Objects.equals(firstName, that.firstName) && Objects.equals(middleName, that.middleName) && Objects.equals(lastName, that.lastName) && Objects.equals(nickname, that.nickname) && Objects.equals(title, that.title) && Objects.equals(company, that.company) && Objects.equals(address, that.address) && Objects.equals(home, that.home) && Objects.equals(mobile, that.mobile) && Objects.equals(work, that.work) && Objects.equals(email, that.email) && Objects.equals(email2, that.email2) && Objects.equals(email3, that.email3) && Objects.equals(day, that.day) && Objects.equals(month, that.month) && Objects.equals(year, that.year) && Objects.equals(groupName, that.groupName);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, firstName, lastName);
+    return Objects.hash(id, firstName, middleName, lastName, nickname, title, company, address, home, mobile, work, email, email2, email3, day, month, year, groupName);
   }
+
+//  @Override
+//  public String toString() {
+//    return "ContactData{" +
+//            "id=" + id +
+//            ", firstName='" + firstName + '\'' +
+//            ", lastName='" + lastName + '\'' +
+//            '}';
+//  }
+
 
   @Override
   public String toString() {
     return "ContactData{" +
             "id=" + id +
             ", firstName='" + firstName + '\'' +
+            ", middleName='" + middleName + '\'' +
             ", lastName='" + lastName + '\'' +
+            ", nickname='" + nickname + '\'' +
+            ", title='" + title + '\'' +
+            ", company='" + company + '\'' +
+            ", address='" + address + '\'' +
+            ", home='" + home + '\'' +
+            ", mobile='" + mobile + '\'' +
+            ", work='" + work + '\'' +
+            ", allPhones='" + allPhones + '\'' +
+            ", email='" + email + '\'' +
+            ", email2='" + email2 + '\'' +
+            ", email3='" + email3 + '\'' +
+            ", allEmails='" + allEmails + '\'' +
+            ", day='" + day + '\'' +
+            ", month='" + month + '\'' +
+            ", year='" + year + '\'' +
+            ", groupName='" + groupName + '\'' +
+            ", photo='" + photo + '\'' +
             '}';
   }
-
 }

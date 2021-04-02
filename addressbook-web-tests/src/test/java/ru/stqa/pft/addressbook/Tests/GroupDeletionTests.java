@@ -11,21 +11,21 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class GroupDeletionTests extends TestBase {
   @BeforeMethod
   public void ensurePreconditions() {
-    app.goTo().groupPage();
-    // Проверка на наличии хотя бы 1ой гуппы на странице.
-    if (app.group().all().size() == 0) {
+    if (app.db().groups().size()==0){
+      app.goTo().groupPage();
       app.group().create(new GroupData().withName("test1"));
     }
   }
 
   @Test
   public void testGroupDeletion() {
-    Groups before = app.group().all();
+    app.goTo().groupPage();
+    Groups before = app.db().groups();
     GroupData deletedGroup = before.iterator().next();
     app.group().delete(deletedGroup);
     // Сравнение размера списков групп.
     assertThat(app.group().count() , equalTo(before.size() - 1));
-    Groups after = app.group().all();
+    Groups after = app.db().groups();
     // Сравнение списков групп целиком.
     assertThat(after, equalTo(before.without(deletedGroup)));
   }
