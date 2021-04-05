@@ -3,10 +3,13 @@ package ru.stqa.pft.addressbook.tests;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.thoughtworks.xstream.XStream;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.GroupData;
+import ru.stqa.pft.addressbook.model.Groups;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -59,15 +62,25 @@ public class ContactCreationTests extends TestBase {
       return contacts.stream().map((g) -> new Object[] {g}).collect(Collectors.toList()).iterator();
     }
   }
+  @BeforeMethod
+  public void ensurePreconditions() {
+    if (app.db().groups().size()==0){
+      app.goTo().groupPage();
+      app.group().create(new GroupData().withName("test"));
+    }
+  }
 
   @Test
   public void testContactCreation() {
+    Groups groups = app.db().groups();
     //File photo = new File("src/test/resources/stru.png");
     app.goTo().contactPage();
     Contacts before = app.db().contacts();
     app.goTo().newPage();
     ContactData contact = new ContactData()
-            .withFirstName("Elizaveta").withMiddleName("Prockaya").withLastName("Pavlovna").withNickname("Liza").withTitle("tester").withCompany("CometСat").withAddress("Russia, Nizhny Novgorod").withMobilePhone("89200101623").withEmail("cat@gmail.com").withDay("5").withMonth("May").withYear("2000").withEmail2("").withEmail3("").withWorkPhone("").withHomePhone("");
+            .withFirstName("Elizaveta").withMiddleName("Prockaya").withLastName("Pavlovna").withNickname("Liza").withTitle("tester")
+            .withCompany("CometСat").withAddress("Russia, Nizhny Novgorod").withMobilePhone("89200101623").withEmail("cat@gmail.com")
+            .withDay("5").withMonth("May").withYear("2000").withEmail2("").withEmail3("").withWorkPhone("").withHomePhone("").inGroup(groups.iterator().next());
     app.contact().create(contact, true);
     app.contact().returnToHome();
     assertThat(app.contact().count(), equalTo(before.size() + 1));

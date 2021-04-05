@@ -14,13 +14,14 @@ public class ContactDeletionTests extends TestBase {
     if (app.db().contacts().size()==0){
       app.goTo().contactPage();
       app.contact().create(new ContactData()
-              .withFirstName("Elizaveta").withMiddleName("Prockaya").withLastName("Pavlovna").withNickname("Liza").withTitle("tester").withCompany("CometСat").withAddress("Russia, Nizhny Novgorod").withMobilePhone("89200101623").withEmail("cat@gmail.com").withDay("5").withMonth("May").withYear("2000").withGroupName("test1"),true);
+              .withFirstName("Elizaveta").withMiddleName("Prockaya").withLastName("Pavlovna").withNickname("Liza").withTitle("tester").withCompany("CometСat").withAddress("Russia, Nizhny Novgorod").withMobilePhone("89200101623").withEmail("cat@gmail.com").withDay("5").withMonth("May").withYear("2000"),true);//.withGroupName("test1"),true);
     }
   }
 
 
   @Test
   public void testContactDeletion() {
+    app.goTo().contactPage();
     Contacts before = app.db().contacts();
     ContactData deletedContact = before.iterator().next();
     app.contact().delete(deletedContact);

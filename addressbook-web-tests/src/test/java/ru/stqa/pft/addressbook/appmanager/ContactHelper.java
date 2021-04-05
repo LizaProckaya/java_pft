@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
+
 import java.util.List;
 
 public class ContactHelper extends HelperBase {
@@ -52,15 +53,18 @@ public class ContactHelper extends HelperBase {
     }
     type(By.name("byear"), contactData.getYear());
     if (creation) {
-//      click(By.name("new_group"));
-      try {
-        new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroupName() + "");
-      } catch (Exception e) {
-        System.out.println(e.getMessage());
-      }
+      if (contactData.getGroups().size() > 0) {
+        Assert.assertTrue(contactData.getGroups().size() == 1);
+//        try {
+//          new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroups().iterator().next().getName());
+            new Select(wd.findElement(By.name("new_group"))).selectByValue(contactData.getGroups().iterator().next().getId() + "");
+//        } catch (Exception e) {
+//          System.out.println(e.getMessage());
+//        }
 //      click(By.xpath("(//option[@value='" + contactData.getGroupId() + "'])[3]"));
-    } else {
-      Assert.assertFalse(isElementPresent(By.name("new_group")));
+      } else {
+        Assert.assertFalse(isElementPresent(By.name("new_group")));
+      }
     }
   }
 

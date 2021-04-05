@@ -19,7 +19,7 @@ public class ContactPhoneTests extends TestBase {
       app.contact().create(new ContactData()
               .withFirstName("Elizaveta").withMiddleName("Prockaya").withLastName("Pavlovna").withNickname("Liza").withTitle("tester").withCompany("CometСat")
               .withAddress("Russia, Nizhny Novgorod").withHomePhone("4177915").withMobilePhone("89200101623").withWorkPhone("99999999999")
-              .withEmail("cat@gmail.com").withEmail2("fjfjfj@yandex.ru").withEmail3("1@mail.ru").withDay("5").withMonth("May").withYear("2000").withGroupName("test1"), true);
+              .withEmail("cat@gmail.com").withEmail2("fjfjfj@yandex.ru").withEmail3("1@mail.ru").withDay("5").withMonth("May").withYear("2000"), true);//.withGroupName("test1"), true);
     }
   }
 

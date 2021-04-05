@@ -7,7 +7,9 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.io.File;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "addressbook")
@@ -16,7 +18,8 @@ public class ContactData {
   @XStreamOmitField
   @Id
   @Column(name = "id")
-  private int id = Integer.MAX_VALUE;;
+  private int id = Integer.MAX_VALUE;
+  ;
   @Expose
   @Column(name = "firstName")
   private String firstName;
@@ -64,17 +67,13 @@ public class ContactData {
   private String month;
   @Column(name = "byear")
   private String year;
-  @Expose
-  @Transient
-  private String groupName;
+  @ManyToMany(fetch = FetchType.EAGER)
+  @JoinTable(name = "address_in_groups",joinColumns = @JoinColumn(name = "id"),inverseJoinColumns = @JoinColumn(name = "group_id"))
+  private Set<GroupData> groups = new HashSet<GroupData>();
   @Column(name = "photo")
   @Type(type = "text")
   private String photo;
 
-  public ContactData withPhoto(File  photo) {
-    this.photo = photo.getPath();
-    return  this;
-  }
 
 
   public ContactData withId(int id) {
@@ -122,6 +121,7 @@ public class ContactData {
     return this;
 
   }
+
   public ContactData withMobilePhone(String mobile) {
     this.mobile = mobile;
     return this;
@@ -131,23 +131,28 @@ public class ContactData {
     this.work = work;
     return this;
   }
-  public ContactData withAllPhones (String allPhones) {
+
+  public ContactData withAllPhones(String allPhones) {
     this.allPhones = allPhones;
     return this;
   }
+
   public ContactData withEmail(String email) {
     this.email = email;
     return this;
   }
+
   public ContactData withEmail2(String email2) {
     this.email2 = email2;
     return this;
   }
-  public ContactData withEmail3 (String email3) {
+
+  public ContactData withEmail3(String email3) {
     this.email3 = email3;
     return this;
   }
-  public ContactData withAllEmails (String allEmails) {
+
+  public ContactData withAllEmails(String allEmails) {
     this.allEmails = allEmails;
     return this;
   }
@@ -167,11 +172,14 @@ public class ContactData {
     return this;
   }
 
-  public ContactData withGroupName(String groupName) {
-    this.groupName = groupName;
-    return this;
+  public void setGroups(Set<GroupData> groups) {
+    this.groups = groups;
   }
 
+  public ContactData withPhoto(File photo) {
+    this.photo = photo.getPath();
+    return this;
+  }
 
 
   public int getId() {
@@ -214,7 +222,9 @@ public class ContactData {
     return mobile;
   }
 
-  public String getWork() { return work; }
+  public String getWork() {
+    return work;
+  }
 
   public String getAllPhones() {
     return allPhones;
@@ -223,15 +233,19 @@ public class ContactData {
   public String getEmail() {
     return email;
   }
+
   public String getEmail2() {
     return email2;
   }
+
   public String getEmail3() {
     return email3;
   }
+
   public String getAllEmails() {
     return allPhones;
   }
+
   public String getDay() {
     return day;
   }
@@ -244,28 +258,30 @@ public class ContactData {
     return year;
   }
 
-  public String getGroupName() {
-    return groupName;
+  public Groups getGroups() {
+    return new Groups(groups);
   }
-
   public File getPhoto() {
     return new File(photo);
   }
+
+
+
 
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     ContactData that = (ContactData) o;
-    return id == that.id && Objects.equals(firstName, that.firstName) && Objects.equals(middleName, that.middleName) && Objects.equals(lastName, that.lastName) && Objects.equals(nickname, that.nickname) && Objects.equals(title, that.title) && Objects.equals(company, that.company) && Objects.equals(address, that.address) && Objects.equals(home, that.home) && Objects.equals(mobile, that.mobile) && Objects.equals(work, that.work) && Objects.equals(email, that.email) && Objects.equals(email2, that.email2) && Objects.equals(email3, that.email3) && Objects.equals(day, that.day) && Objects.equals(month, that.month) && Objects.equals(year, that.year) && Objects.equals(groupName, that.groupName);
+    return id == that.id && Objects.equals(firstName, that.firstName) && Objects.equals(middleName, that.middleName) && Objects.equals(lastName, that.lastName) && Objects.equals(nickname, that.nickname) && Objects.equals(title, that.title) && Objects.equals(company, that.company) && Objects.equals(address, that.address) && Objects.equals(home, that.home) && Objects.equals(mobile, that.mobile) && Objects.equals(work, that.work) && Objects.equals(allPhones, that.allPhones) && Objects.equals(email, that.email) && Objects.equals(email2, that.email2) && Objects.equals(email3, that.email3) && Objects.equals(allEmails, that.allEmails) && Objects.equals(day, that.day) && Objects.equals(month, that.month) && Objects.equals(year, that.year) && Objects.equals(groups, that.groups);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, firstName, middleName, lastName, nickname, title, company, address, home, mobile, work, email, email2, email3, day, month, year, groupName);
+    return Objects.hash(id, firstName, middleName, lastName, nickname, title, company, address, home, mobile, work, allPhones, email, email2, email3, allEmails, day, month, year, groups);
   }
 
-//  @Override
+  //  @Override
 //  public String toString() {
 //    return "ContactData{" +
 //            "id=" + id +
@@ -297,8 +313,13 @@ public class ContactData {
             ", day='" + day + '\'' +
             ", month='" + month + '\'' +
             ", year='" + year + '\'' +
-            ", groupName='" + groupName + '\'' +
+            ", groups=" + groups +
             ", photo='" + photo + '\'' +
             '}';
+  }
+
+  public ContactData inGroup(GroupData group) {
+    groups.add(group);
+    return this;
   }
 }
