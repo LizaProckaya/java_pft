@@ -15,3 +15,6 @@ gradle-app.setting
 # gradle/wrapper/gradle-wrapper.properties
 addressbook-web-tests/test$(bySecond).log
 *.log
+*.log
+*.log
+*.log
