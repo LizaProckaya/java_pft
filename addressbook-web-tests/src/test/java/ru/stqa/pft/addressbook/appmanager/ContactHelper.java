@@ -76,11 +76,14 @@ public class ContactHelper extends HelperBase {
     click(By.linkText("home"));
   }
 
-
   public void deleteFirstSelectedContact(int index) {
     wd.findElements(By.name("selected[]")).get(index).click();
     click(By.xpath("//input[@value='Delete']"));
     wd.switchTo().alert().accept();
+  }
+
+  public void selectContactById(int id) {
+    wd.findElement(By.cssSelector("input[value ='" + id + "']")).click();
   }
 
   public void deleteFirstSelectedContactById(int id) {
@@ -95,6 +98,29 @@ public class ContactHelper extends HelperBase {
 
   public void initContactModificationById(int id) {
     wd.findElement(By.xpath("//a[@href='edit.php?id=" + id + "']")).click();
+  }
+
+  public void addContactsToGroupById(int id) {
+    click(By.name("to_group"));
+    new Select(wd.findElement(By.name("to_group"))).selectByValue(id + "");
+    click(By.name("add"));
+  }
+
+  public void addContactsToGroupByVisibleText(String visibleText) {
+    click(By.name("to_group"));
+    new Select(wd.findElement(By.name("to_group"))).selectByVisibleText(visibleText);
+    click(By.name("add"));
+  }
+
+  public void selectGroupById(int id) {
+    click(By.name("group"));
+    new Select(wd.findElement(By.name("group"))).selectByValue(id + "");
+  }
+
+  public void removeContactFromGroup(int groupId, int contactId) {
+    selectGroupById(groupId);
+    selectContactById(contactId);
+    click(By.name("remove"));
   }
 
   public void submitContactModification() {

@@ -19,7 +19,6 @@ public class ContactData {
   @Id
   @Column(name = "id")
   private int id = Integer.MAX_VALUE;
-  ;
   @Expose
   @Column(name = "firstName")
   private String firstName;
@@ -73,8 +72,6 @@ public class ContactData {
   @Column(name = "photo")
   @Type(type = "text")
   private String photo;
-
-
 
   public ContactData withId(int id) {
     this.id = id;
@@ -178,6 +175,11 @@ public class ContactData {
 
   public ContactData withPhoto(File photo) {
     this.photo = photo.getPath();
+    return this;
+  }
+
+  public ContactData withGroups(Set<GroupData> groups) {
+    this.groups = groups;
     return this;
   }
 
