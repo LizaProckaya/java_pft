@@ -17,9 +17,12 @@ public class ApplicationManager {
   private WebDriver wd;
   private String browser;
   private RegistrationHelper registrationHelper;
+  private AdminHelper adminHelper;
+  private UserHelper userHelper;
   private FtpHelper ftp;
   private MailHelper mailHelper;
   private JamesHelper jamesHelper;
+  private DbHelper dbHelper;
 
   public ApplicationManager(String browser) {
     this.browser = browser;
@@ -27,6 +30,7 @@ public class ApplicationManager {
   }
 
   public void init() throws IOException {
+    dbHelper = new DbHelper();
     String target = System.getProperty("target", "local");
     properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
   }
@@ -52,6 +56,20 @@ public class ApplicationManager {
     return registrationHelper;
   }
 
+  public AdminHelper admin() {
+    if (adminHelper == null) {
+      adminHelper = new AdminHelper(this);
+    }
+    return adminHelper;
+  }
+
+  public UserHelper user() {
+    if (userHelper == null) {
+      userHelper = new UserHelper(this);
+    }
+    return userHelper;
+  }
+
   public FtpHelper ftp() {
     if (ftp == null) {
       return ftp = new FtpHelper(this);
@@ -59,13 +77,13 @@ public class ApplicationManager {
     return ftp;
   }
 
-
   public WebDriver getDriver() {
     if (wd == null) {
       if (browser.equals(BrowserType.FIREFOX)) {
         wd = new FirefoxDriver();
       } else if (browser.equals(BrowserType.CHROME)) {
         wd = new ChromeDriver();
+        wd.manage().window().maximize();
       } else if (browser.equals(BrowserType.IE)) {
         wd = new InternetExplorerDriver();
       }
@@ -90,5 +108,9 @@ public class ApplicationManager {
       jamesHelper = new JamesHelper(this);
     }
     return jamesHelper;
+  }
+
+  public DbHelper db(){
+    return dbHelper;
   }
 }
