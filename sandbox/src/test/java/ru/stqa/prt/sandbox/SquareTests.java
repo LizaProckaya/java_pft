@@ -1,6 +1,5 @@
 package ru.stqa.prt.sandbox;
 
-
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
