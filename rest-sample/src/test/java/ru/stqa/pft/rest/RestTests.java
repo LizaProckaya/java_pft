@@ -21,7 +21,7 @@ public class RestTests {
     Issue newIssue = new Issue().withSubject("Test issue").withDescription("New test issue");
     createIssue(newIssue);
     int newIssues = getTotal();
-    assertEquals(newIssues, oldIssues + 1);
+    assertEquals(newIssues, oldIssues +1);
   }
 
   private int getTotal() throws IOException {
